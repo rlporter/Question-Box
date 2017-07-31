@@ -1,0 +1,24 @@
+<header>
+  <h1><strong>Question Box</strong></h1>
+  <div class="nav_bar">
+    <%= link_to 'Ask a Question', new_post_path %> |
+    <%= link_to 'Question Index', posts_path %> |
+    <%= paginate @posts %>
+  </div>
+  <hr/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</header>
+  <% @posts.each do |post| %>
+  <h1><%= link_to post.title, post %></h1>
+
+  <p>
+    <%= markdown(post.body) %>
+  </p>
+  <h5>Published: <%= post.published_at %></h5>
+
+  <% if post != @posts.last %>
+    <hr/>
+
+  <% end %>
+<% end %>
