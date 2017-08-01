@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  
+  belongs_to :user
+
   # before_save :assign_markdown_content, if: -> { content_changed? }
   #
   # def assign_markdown_content

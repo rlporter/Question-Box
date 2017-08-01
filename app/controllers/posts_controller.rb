@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  # belongs_to :user
 
   def index
     @posts = Post.order('published_at DESC').page params[:page]
@@ -6,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @answers = @user.answers.paginate(page: params[:page])
   end
 
   def new

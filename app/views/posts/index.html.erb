@@ -1,16 +1,35 @@
-<header>
-  <h1><strong>Question Box</strong></h1>
-  <div class="nav_bar">
-    <%= link_to 'Ask a Question', new_post_path %> |
-    <%= link_to 'Question Index', posts_path %> |
-    <%= paginate @posts %>
-  </div>
-  <hr/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<% provide(:title, 'The Question Box') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %> | Ruby on Rails Sample App</title>
+</head>
+<body>
 
-</header>
+    <header class='navbar navbar-fixed-top navbar-inverse'>
+      <div class='container'>
+        <%= link_to "StackJoverflow", 'root', id: "logo" %>
+        <nav>
+          <ul class='nav navbar-nav navbar-right'>
+            <% if logged_in? %>
+            <li><%= link_to 'Ask a Question', new_post_path %></li>
+            <li><%= link_to 'Question Index', posts_path %></li>
+            <li><%= link_to 'Logout', logout_path %></li>
+            <% else %>
+            <li><%= link_to 'Login', login_path %></li>
+          </ul>
+        </nav>
+        </div>
+    </header>
+
+    <div class="center jumbotron">
+      <h1><strong>The Question Box</strong></h1>
+        <p>Got questions? We've got answers!</p>
+        <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    </div>
+    <hr />
   <% @posts.each do |post| %>
-  <h1><%= link_to post.title, post %></h1>
+  <h2><strong><%= link_to post.title, post %></strong></h2>
 
   <p>
     <%= markdown(post.body) %>
@@ -21,4 +40,7 @@
     <hr/>
 
   <% end %>
+<% end %>
+</body>
+</html>
 <% end %>
