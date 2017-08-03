@@ -1,33 +1,33 @@
-<header>
-  <h1><%= @post.title %></h1>
-  <div class="nav_bar">
-    <%= link_to 'Ask a Question', new_post_path %>
-    |
-    <%= link_to 'Back to Question Index', posts_path %>
-  </div>
-  <hr/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</header>
+<% provide(:title, "Question") %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title %> | Ruby on Rails Sample App)</title>
+</head>
+<body>
+  <header>
+    <h1><%= @post.title %></h1>
+    <header class='navbar navbar-fixed-top navbar-inverse'>
+    <div class="container">
+      <%= link_to "StackJoverflow", '/', id: "logo" %>
+      <nav>
+        <ul class='nav navbar-nav navbar-right'>
+          <% if logged_in? %>
+          <li><%= link_to 'Ask a Question', new_post_path %></li>
+          <li><%= link_to 'Question Index', posts_path %></li>
+          <li><%= link_to 'Logout', logout_path %></li>
+          <% else %>
+          <li><%= link_to 'Login', login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <hr/>
+  </header>
 
-<p>
-  <%= markdown(@post.body) %>
-</p>
-<h4>Published: <%= @post.published_at %></h4>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-<div class="col-md-8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
+  <p>
+    <%= markdown(@post.body) %>
+  </p>
+  <h4>Published: <%= @post.published_at %></h4>
+  </body>
+</html>

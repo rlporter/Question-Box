@@ -12,6 +12,7 @@
         <li><%= link_to 'Logout', logout_path %></li>
         <% else %>
         <li><%= link_to 'Login', login_path %></li>
+        <% end %>
       </ul>
 
     </nav>
@@ -23,13 +24,9 @@
     <%= simple_form_for(:session, url: login_path) do |f| %>
 
       <%= f.input :email, input_html: {class: 'form-control'} %>
-
       <%= f.input :password, input_html: {class: 'form-control'} %>
-
       <%= f.submit "Log in", class: "btn btn-primary" %>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </div>
-<% end %>

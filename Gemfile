@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootstrap-sass', '3.3.7'
+gem 'cocoon', '~> 1.2', '>= 1.2.9'
+gem 'faker', '1.7.3'
 gem 'kaminari'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -19,6 +21,8 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate', '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

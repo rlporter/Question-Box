@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  # belongs_to :user
+  # before_action :logged_in_user, only: [:index, :show, :edit, :update]
+  # before_action :correct_user,   only: [:edit, :update]
+
 
   def index
     @posts = Post.order('published_at DESC').page params[:page]
@@ -7,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @answers = @user.answers.paginate(page: params[:page])
+
   end
 
   def new
@@ -30,4 +32,16 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :published_at)
   end
+
+  def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root) unless @user == current_user
+    end
 end
